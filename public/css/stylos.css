@@ -1,0 +1,11 @@
+.fondologin{
+    position : absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    /* background-image: url('../img/vane.jpg'); */
+    background-color: darkcyan;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

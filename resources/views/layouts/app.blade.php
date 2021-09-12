@@ -31,7 +31,12 @@
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
-
+    {{-- estilos personalizados --}}
+    <link rel="stylesheet" href="{{ asset('css/stylos.css') }}">
+     <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
 </head>
 
@@ -76,7 +81,7 @@
                 </div>
             </nav>
 
-            <main class="py-4">
+            <main >
                 @yield('content')
             </main>
         </div>
@@ -128,7 +133,14 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
+                            <a class="dropdown-item" href="{{ route('password.request') }}">
+                                {{ __('Cambiar Contraseña') }}
+                            </a>
                         </div>
+                        
+
+                         
+                       
                     </li>
 
                 </ul>
@@ -139,8 +151,8 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- aqui va el logo -->
-                <a href="index3.html" class="brand-link">
-                    <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                <a href="{{ route('home')}}" class="brand-link">
+                    <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                         style="opacity: .8">
                     <span class="brand-text font-weight-light">Proyect Tesis </span>
                 </a>
@@ -152,16 +164,14 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
+                            <li class="nav-header">Administración</li>
                             <li class="nav-item">
-                                <a href="pages/widgets.html" class="nav-link active">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Widgets
-                                        <span class="right badge badge-danger">New</span>
-                                    </p>
+                                <a href="{{route('tutor.convenio.index')}}" class="nav-link active">
+                                    <i class="nav-icon fas fa-building"></i>
+                                    <p>Convenios</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-copy"></i>
                                     <p>
@@ -225,7 +235,7 @@
                                         <span class="badge badge-info right">2</span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
@@ -248,19 +258,7 @@
                 </div>
                 <!-- /.content-header -->
 
-                <!-- Main content -->
-                <section class="content">
-                    <div class="container-fluid">
-
-                    </div>
-                </section>
-                <!-- /.content -->
-            </div>
-
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Control sidebar content goes here -->
-            </aside>
-            <!-- /.control-sidebar -->
+     
 
         </div>
     @endguest
@@ -301,5 +299,34 @@
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
-
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": [ "csv", "excel", "pdf", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
 </html>
