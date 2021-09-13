@@ -166,9 +166,15 @@
                             data-accordion="false">
                             <li class="nav-header">Administración</li>
                             <li class="nav-item">
-                                <a href="{{route('tutor.convenio.index')}}" class="nav-link active">
+                                <a href="{{route('tutor.convenio.index')}}" class="nav-link ">
                                     <i class="nav-icon fas fa-building"></i>
                                     <p>Convenios</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('tutor.oferta_cupo.index')}}" class="nav-link ">
+                                    <i class="nav-icon fas fa-briefcase"></i>
+                                    <p>Ofertas</p>
                                 </a>
                             </li>
                             {{-- <li class="nav-item">
@@ -316,7 +322,7 @@
     $(function () {
       $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": [ "csv", "excel", "pdf", "colvis"]
+        // "buttons": [ "csv", "excel", "pdf", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,

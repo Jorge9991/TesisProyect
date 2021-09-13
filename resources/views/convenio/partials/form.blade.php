@@ -11,7 +11,7 @@
 
     <div class="form-group col-md-6">
         <label for="select" class=" form-control-label">Tipología de la empresa:</label>
-            <select name="tipologia_empresa" id="tipologia_empresa" class="form-control">
+            <select name="tipologia_empresa" id="tipologia_empresa" class="custom-select">
                 @if (isset($convenio))
                 <option value="PÚBLICA" @if( $convenio->tipologia_empresa == 'PÚBLICA') selected='selected' @endif>PÚBLICA</option>
                 <option value="PRIVADA" @if( $convenio->tipologia_empresa == 'PRIVADA') selected='selected' @endif>PRIVADA</option>
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group col-md-6">
         <label for="select" class=" form-control-label">Avance:</label>
-            <select name="avance" id="avance" class="form-control">
+            <select name="avance" id="avance" class="custom-select">
                 @if (isset($convenio))
                 <option value="FIRMADO" @if( $convenio->avance == 'FIRMADO') selected='selected' @endif>FIRMADO</option>
                 <option value="NO FIRMADO" @if( $convenio->avance == 'NO FIRMADO') selected='selected' @endif>NO FIRMADO</option>

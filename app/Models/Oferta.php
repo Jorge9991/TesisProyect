@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Convenio extends Model
+class Oferta extends Model
 {
     use HasFactory;
 
-    public function ofertas(){
-        return $this->hasMany('App\Models\Oferta');
+    public function convenios(){
+        return $this->belongsTo('App\Models\Convenio','id_convenio');
     }
 }
-
