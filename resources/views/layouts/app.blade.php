@@ -19,6 +19,10 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
         href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+           <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
@@ -33,10 +37,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
     {{-- estilos personalizados --}}
     <link rel="stylesheet" href="{{ asset('css/stylos.css') }}">
-     <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+  
 
 </head>
 
@@ -90,7 +91,7 @@
 
             <!-- Preloader -->
             <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+                <img class="animation__shake" src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
             </div>
 
             <!-- Navbar -->
@@ -113,11 +114,7 @@
                             <i class="fas fa-expand-arrows-alt"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                            <i class="fas fa-th-large"></i>
-                        </a>
-                    </li>
+                
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -166,13 +163,13 @@
                             data-accordion="false">
                             <li class="nav-header">Administración</li>
                             <li class="nav-item">
-                                <a href="{{route('tutor.convenio.index')}}" class="nav-link ">
+                                <a href="{{route('tutor.convenio.index')}}" class="nav-link {{request()->routeIs('tutor.convenio.*') ? 'active' : ''}}">
                                     <i class="nav-icon fas fa-building"></i>
                                     <p>Convenios</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('tutor.oferta_cupo.index')}}" class="nav-link ">
+                                <a href="{{route('tutor.oferta_cupo.index')}}" class="nav-link {{request()->routeIs('tutor.oferta_cupo.*') ? 'active' : ''}}">
                                     <i class="nav-icon fas fa-briefcase"></i>
                                     <p>Ofertas</p>
                                 </a>

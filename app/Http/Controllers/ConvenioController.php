@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CredencialesMailable;
 use App\Models\Convenio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ConvenioController extends Controller
 {
@@ -48,7 +50,7 @@ class ConvenioController extends Controller
             'fecha_finalizacion'=> 'required',
             'numero_convenio'=> 'required',
             'aprobacion_zonal'=> 'required',
-            'email'=> 'required',
+            'email'=> ['required', 'unique:users'],
         ]);
 
         $convenio = new Convenio();
@@ -69,6 +71,8 @@ class ConvenioController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->entidad_receptora)
         ]);
+        $correo = new CredencialesMailable($request->all());
+        Mail::to($request->email)->send($correo);
 
         return redirect()->route('tutor.convenio.index')->with('info', 'El convenio se creo sastifactoriamente');
     }
