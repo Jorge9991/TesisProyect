@@ -19,7 +19,7 @@ class CreateActivitiesTable extends Migration
             $table->date('fecha');
             $table->string('recurso');
             $table->string('descripcion_visita');
-
+            $table->integer('estado');
             $table->unsignedBigInteger('id_estudiante');
             $table->foreign('id_estudiante')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');         
             $table->timestamps();

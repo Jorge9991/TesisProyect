@@ -161,7 +161,9 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
-                            <li class="nav-header">Administración</li>
+                            {{-- gestor --}}
+                            @if (Auth::user()->tipo_usuario == 1)
+                            <li class="nav-header"><h5>Menú de opciones</h5></li>
                             <li class="nav-item">
                                 <a href="{{route('tutor.convenio.index')}}" class="nav-link {{request()->routeIs('tutor.convenio.*') ? 'active' : ''}}">
                                     <i class="nav-icon fas fa-building"></i>
@@ -174,6 +176,30 @@
                                     <p>Ofertas</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-briefcase"></i>
+                                    <p>Postulaciones</p>
+                                </a>
+                            </li>
+                            @endif
+                            {{-- egresado --}}
+                            @if (Auth::user()->tipo_usuario == 0)
+                            <li class="nav-header"><h5>Menú de opciones</h5></li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-file-word"></i>
+                                    <p>Recursos</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-briefcase"></i>
+                                    <p>Cupo ofertado</p>
+                                </a>
+                            </li>
+                            @endif
+
                             {{-- <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-copy"></i>
