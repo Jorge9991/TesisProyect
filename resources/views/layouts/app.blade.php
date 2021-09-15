@@ -177,8 +177,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link ">
-                                    <i class="nav-icon fas fa-briefcase"></i>
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-book"></i>
                                     <p>Postulaciones</p>
                                 </a>
                             </li>
@@ -193,7 +193,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link ">
+                                <a href="{{route('egresado.postulation.index')}}" class="nav-link {{request()->routeIs('egresado.postulation.index') ? 'active' : ''}}">
                                     <i class="nav-icon fas fa-briefcase"></i>
                                     <p>Cupo ofertado</p>
                                 </a>
