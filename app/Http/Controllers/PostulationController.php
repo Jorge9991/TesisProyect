@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AprobarPostMailable;
 use App\Mail\OfertasMailable;
+use App\Mail\RechazarPostMailable;
 use App\Models\Oferta;
 use App\Models\Postulation;
 use App\Models\User;
@@ -87,5 +89,59 @@ class PostulationController extends Controller
         }else{
             return redirect()->route('egresado.postulation.index')->with('info', 'Ya ha postulado anteriormente a un cupo!');
         }
+    }
+
+    public function postulaciones()
+    {
+        $postulaciones = Postulation::all();
+
+        return view('oferta.postulaciones', compact('postulaciones'));
+    }
+
+    public function rechazar($postulation)
+    {
+        $postulation = Postulation::where('id','=',$postulation)->first();
+        $postulation->delete();
+
+        return redirect()->route('egresado.postulation.postulaciones')->with('info', 'Se há Rechazado una postulación');
+        
+    }
+    public function aprobar($postulation)
+    {
+        $postulation = Postulation::where('id','=',$postulation)->first();
+        return view('oferta.aprobar', compact('postulation'));
+    }
+
+    public function aprobado(Request $request, Postulation $postulation)
+    {
+        $request->validate([
+            'codigo'=> 'required',
+            'link'=> 'required',
+        ]);
+        $postulation->codigo = $request->codigo;
+        $postulation->link = $request->link;
+        $postulation->estado = '2';
+        $postulation->save();
+
+        $correoestudiante =$postulation->estudiantes->email;
+        $correo = new AprobarPostMailable($postulation);
+        Mail::to($correoestudiante)->send($correo);
+
+        return redirect()->route('egresado.postulation.postulaciones')->with('info', 'Se há Aprobado una postulación');
+       
+    }
+
+    public function cancelar_postulacion($postulation){
+
+        $postulation = Postulation::where('id','=',$postulation)->first();
+        $postulation->estado = '1';
+        $postulation->save();
+
+        $correoestudiante =$postulation->estudiantes->email;
+        $correo = new RechazarPostMailable($postulation);
+        Mail::to($correoestudiante)->send($correo);
+
+        return redirect()->route('egresado.postulation.postulaciones')->with('info', 'Se há Cancelado una postulación');
+        
     }
 }

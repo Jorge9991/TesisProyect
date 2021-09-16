@@ -11,6 +11,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function postulations(){
+        return $this->hasMany('App\Models\Postulation');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

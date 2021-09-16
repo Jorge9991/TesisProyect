@@ -177,7 +177,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('egresado.postulation.postulaciones')}}" class="nav-link {{request()->routeIs('egresado.postulation.*') ? 'active' : ''}}">
                                     <i class="nav-icon fas fa-book"></i>
                                     <p>Postulaciones</p>
                                 </a>

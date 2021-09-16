@@ -11,4 +11,10 @@ class Postulation extends Model
     protected $fillable = [
         'estado','codigo', 'link', 'id_estudiante','id_oferta'
     ];
+    public function estudiantes(){
+        return $this->belongsTo('App\Models\User','id_estudiante');
+    }
+    public function ofertas(){
+        return $this->belongsTo('App\Models\Oferta','id_oferta');
+    }
 }

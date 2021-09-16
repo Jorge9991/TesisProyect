@@ -12,4 +12,8 @@ class Oferta extends Model
     public function convenios(){
         return $this->belongsTo('App\Models\Convenio','id_convenio');
     }
+    public function postulations(){
+        return $this->hasMany('App\Models\Postulation');
+    }
+
 }
