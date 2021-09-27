@@ -16,6 +16,7 @@ class CreateAsignacionsTable extends Migration
         Schema::create('asignacions', function (Blueprint $table) {
             $table->id();
             $table->integer('estado');
+            $table->string('observacion')->nullable();
 
             $table->unsignedBigInteger('id_estudiante');
             $table->foreign('id_estudiante')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

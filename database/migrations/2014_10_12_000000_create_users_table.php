@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('tipo_usuario')->default(0); // 0 = egresado, 1 = gestor 2=convenio
+            $table->integer('tipo_usuario')->default(0); // 0 = egresado, 1 = gestor, 2=convenio, 3 = tutor o docente
             $table->rememberToken();
             $table->timestamps();
         });

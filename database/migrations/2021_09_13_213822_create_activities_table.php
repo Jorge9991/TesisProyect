@@ -17,11 +17,13 @@ class CreateActivitiesTable extends Migration
             $table->id();
             $table->string('descripcion');
             $table->date('fecha');
-            $table->string('recurso');
+            $table->string('recurso')->nullable();
             $table->string('descripcion_visita');
             $table->integer('estado');
-            $table->unsignedBigInteger('id_estudiante');
-            $table->foreign('id_estudiante')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');         
+            $table->unsignedBigInteger('id_asignacion');
+            $table->foreign('id_asignacion')->references('id')->on('asignacions')->onDelete('cascade')->onUpdate('cascade');         
+            $table->unsignedBigInteger('id_tutor');
+            $table->foreign('id_tutor')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');         
             $table->timestamps();
         });
     }

@@ -107,6 +107,7 @@ class OfertaController extends Controller
         $oferta_cupo->id_convenio = $request->id_convenio;
         $oferta_cupo->save();
         return redirect()->route('tutor.oferta_cupo.edit', $oferta_cupo)->with('info', 'La oferta se actualizó correctamente');
+    
     }
 
     /**

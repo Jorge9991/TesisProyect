@@ -19,10 +19,10 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
         href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-           <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
     {{-- estilos personalizados --}}
     <link rel="stylesheet" href="{{ asset('css/stylos.css') }}">
-  
+
 
 </head>
 
@@ -82,7 +82,7 @@
                 </div>
             </nav>
 
-            <main >
+            <main>
                 @yield('content')
             </main>
         </div>
@@ -91,7 +91,8 @@
 
             <!-- Preloader -->
             <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake" src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
+                <img class="animation__shake" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60"
+                    width="60">
             </div>
 
             <!-- Navbar -->
@@ -114,7 +115,7 @@
                             <i class="fas fa-expand-arrows-alt"></i>
                         </a>
                     </li>
-                
+
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -123,7 +124,7 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                 document.getElementById('logout-form').submit();">
+                                                                     document.getElementById('logout-form').submit();">
                                 {{ __('Cerrar Sesión') }}
                             </a>
 
@@ -134,10 +135,10 @@
                                 {{ __('Cambiar Contraseña') }}
                             </a>
                         </div>
-                        
 
-                         
-                       
+
+
+
                     </li>
 
                 </ul>
@@ -148,9 +149,9 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- aqui va el logo -->
-                <a href="{{ route('home')}}" class="brand-link">
-                    <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                        style="opacity: .8">
+                <a href="{{ route('home') }}" class="brand-link">
+                    <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
                     <span class="brand-text font-weight-light">Proyect Tesis </span>
                 </a>
 
@@ -161,110 +162,93 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
+    {{-- egresado --}}
+    @if (Auth::user()->tipo_usuario == 0)
+    <li class="nav-header">
+        <h5>Menú de opciones</h5>
+    </li>
+    <li class="nav-item">
+    <a href="{{route('tutor.recurso.descargar')}}" class="nav-link {{request()->routeIs('tutor.recurso.descargar') ? 'active' : ''}}">
+        <i class="nav-icon fas fa-file-word"></i>
+        <p>Recursos</p>
+    </a>
+</li>
+    <li class="nav-item">
+        <a href="{{ route('egresado.postulation.index') }}"
+            class="nav-link {{ request()->routeIs('egresado.postulation.index') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-briefcase"></i>
+            <p>Cupo ofertado</p>
+        </a>
+    </li>
+@endif
+
                             {{-- gestor --}}
                             @if (Auth::user()->tipo_usuario == 1)
-                            <li class="nav-header"><h5>Menú de opciones</h5></li>
-                            <li class="nav-item">
-                                <a href="{{route('tutor.convenio.index')}}" class="nav-link {{request()->routeIs('tutor.convenio.*') ? 'active' : ''}}">
-                                    <i class="nav-icon fas fa-building"></i>
-                                    <p>Convenios</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('tutor.oferta_cupo.index')}}" class="nav-link {{request()->routeIs('tutor.oferta_cupo.*') ? 'active' : ''}}">
-                                    <i class="nav-icon fas fa-briefcase"></i>
-                                    <p>Ofertas</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('egresado.postulation.postulaciones')}}" class="nav-link {{request()->routeIs('egresado.postulation.*') ? 'active' : ''}}">
-                                    <i class="nav-icon fas fa-book"></i>
-                                    <p>Postulaciones</p>
-                                </a>
-                            </li>
-                            @endif
-                            {{-- egresado --}}
-                            @if (Auth::user()->tipo_usuario == 0)
-                            <li class="nav-header"><h5>Menú de opciones</h5></li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link ">
+                                <li class="nav-header">
+                                    <h5>Menú de opciones</h5>
+                                </li>
+                                <li class="nav-item">
+                                <a href="{{route('tutor.recurso.index')}}" class="nav-link {{request()->routeIs('tutor.recurso.*') ? 'active' : ''}}">
                                     <i class="nav-icon fas fa-file-word"></i>
                                     <p>Recursos</p>
                                 </a>
                             </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('tutor.convenio.index') }}"
+                                        class="nav-link {{ request()->routeIs('tutor.convenio.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-building"></i>
+                                        <p>Convenios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('tutor.oferta_cupo.index') }}"
+                                        class="nav-link {{ request()->routeIs('tutor.oferta_cupo.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-briefcase"></i>
+                                        <p>Ofertas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('egresado.postulation.postulaciones') }}"
+                                        class="nav-link {{ request()->routeIs('egresado.postulation.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-book"></i>
+                                        <p>Postulaciones</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('asignacion.index') }}"
+                                        class="nav-link {{ request()->routeIs('asignacion.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-book"></i>
+                                        <p>Asignación</p>
+                                    </a>
+                                </li>
+                            @endif
+                        {{-- convenio --}}
+                            @if (Auth::user()->tipo_usuario == 2)
+                            <li class="nav-header">
+                                <h5>Menú de opciones</h5>
+                            </li>
+                           
+                            @endif
+                        {{-- docente o tutor --}}
+                            @if (Auth::user()->tipo_usuario == 3)
+                            <li class="nav-header">
+                                <h5>Menú de opciones</h5>
+                            </li>
                             <li class="nav-item">
-                                <a href="{{route('egresado.postulation.index')}}" class="nav-link {{request()->routeIs('egresado.postulation.index') ? 'active' : ''}}">
-                                    <i class="nav-icon fas fa-briefcase"></i>
-                                    <p>Cupo ofertado</p>
+                                <a href="{{ route('asignacion.asignaciontutor') }}"
+                                    class="nav-link {{ request()->routeIs('asignacion.*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-book"></i>
+                                    <p>Asignación</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('activity.index') }}"
+                                    class="nav-link {{ request()->routeIs('activity.*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-book"></i>
+                                    <p>Actividad</p>
                                 </a>
                             </li>
                             @endif
-
-                            {{-- <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-copy"></i>
-                                    <p>
-                                        Layout Options
-                                        <i class="fas fa-angle-left right"></i>
-                                        <span class="badge badge-info right">6</span>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="pages/layout/top-nav.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Top Navigation</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-chart-pie"></i>
-                                    <p>
-                                        Charts
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="pages/charts/chartjs.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>ChartJS</p>
-                                        </a>
-                                    </li>
-                       
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-tree"></i>
-                                    <p>
-                                        UI Elements
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="pages/UI/general.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>General</p>
-                                        </a>
-                                    </li>
-                    
-                        
-                                </ul>
-                            </li>
-                            <li class="nav-header">EXAMPLES</li>
-                            <li class="nav-item">
-                                <a href="pages/calendar.html" class="nav-link">
-                                    <i class="nav-icon far fa-calendar-alt"></i>
-                                    <p>
-                                        Calendar
-                                        <span class="badge badge-info right">2</span>
-                                    </p>
-                                </a>
-                            </li> --}}
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
@@ -287,10 +271,10 @@
                 </div>
                 <!-- /.content-header -->
 
-     
 
-        </div>
-    @endguest
+
+            </div>
+        @endguest
 </body>
 
 
@@ -342,20 +326,23 @@
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        // "buttons": [ "csv", "excel", "pdf", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            // "buttons": [ "csv", "excel", "pdf", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
     });
-  </script>
+</script>
+
 </html>

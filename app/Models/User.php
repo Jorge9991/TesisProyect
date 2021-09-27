@@ -14,6 +14,13 @@ class User extends Authenticatable
     public function postulations(){
         return $this->hasMany('App\Models\Postulation');
     }
+    public function asignaciones(){
+        return $this->hasMany('App\Models\Asignacion');
+    }
+    public function actividades(){
+        return $this->hasMany('App\Models\Activity');
+    }
+
 
     /**
      * The attributes that are mass assignable.

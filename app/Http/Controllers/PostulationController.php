@@ -26,12 +26,14 @@ class PostulationController extends Controller
  
         if(isset($mipostulacion)){
             $idoferta = $mipostulacion->id_oferta;
+            $estado = $mipostulacion->estado;
         }else{
-            $idoferta = 0;          
+            $idoferta = 0;      
+            $estado = 0;    
         }
         $ofertas = Oferta::all();
 
-         return view('oferta.indexg', compact('ofertas','idoferta'));
+         return view('oferta.indexg', compact('ofertas','idoferta','estado'));
     }
 
     /**

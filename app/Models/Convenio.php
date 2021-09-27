@@ -12,5 +12,11 @@ class Convenio extends Model
     public function ofertas(){
         return $this->hasMany('App\Models\Oferta');
     }
+    public function asignaciones(){
+        return $this->hasMany('App\Models\Asignacion');
+    }
+    public function actividades(){
+        return $this->hasMany('App\Models\Activity');
+    }
 }
 

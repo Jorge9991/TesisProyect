@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Postulation;
 use Illuminate\Database\Seeder;
 
-class PostulationSeeder extends Seeder
+class RecursoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +13,6 @@ class PostulationSeeder extends Seeder
      */
     public function run()
     {
-        Postulation::factory(10)->create();
+        //
     }
 }

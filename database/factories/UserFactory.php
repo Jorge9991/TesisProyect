@@ -25,7 +25,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name,
             'cedula' => Str::random(10),
-            'tipo_usuario' => '0',   //
+            'tipo_usuario' =>$this->faker->randomElement([0,3]),   //
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'), // password
