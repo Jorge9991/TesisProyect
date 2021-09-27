@@ -15,15 +15,15 @@ class CreateInformationTable extends Migration
     {
         Schema::create('information', function (Blueprint $table) {
             //Firma tutor (bloqueado campo) este campo no va por que es irrelevante
+            //horas diarias se calcula con el tiempo
             //Cantidad de horas este campo se saca con las sumas, no es necesario guardar
+            //semana 
+            //dia
             $table->id();
             $table->date('fecha');
             $table->time('horas_inicio');
             $table->time('horas_fin');
             $table->string('descripcion');
-            $table->string('dia');
-            $table->integer('semana');
-            $table->integer('horas_diaria');
             $table->unsignedBigInteger('id_estudiante');
             $table->foreign('id_estudiante')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

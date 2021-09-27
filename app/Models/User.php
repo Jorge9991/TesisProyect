@@ -20,6 +20,9 @@ class User extends Authenticatable
     public function actividades(){
         return $this->hasMany('App\Models\Activity');
     }
+    public function informaciones(){
+        return $this->hasMany('App\Models\Information');
+    }
 
 
     /**

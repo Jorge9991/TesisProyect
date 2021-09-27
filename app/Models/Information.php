@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Information extends Model
 {
     use HasFactory;
-    // protected $fillable = [
-    //     'fecha','horas_inicio', 'horas_fin', 'descripcion','dia'
-    // ];
+    protected $fillable = [
+        'fecha','horas_inicio', 'horas_fin', 'descripcion','id_estudiante'
+    ];
+    public function estudiantes(){
+        return $this->belongsTo('App\Models\User','id_estudiante');
+    }
 }

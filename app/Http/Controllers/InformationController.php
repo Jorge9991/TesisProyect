@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Information;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InformationController extends Controller
 {
@@ -14,7 +16,19 @@ class InformationController extends Controller
      */
     public function index()
     {
-        //
+        $total = 0;
+        $user = Auth::user()->id;
+        $informaciones = Information::where('id_estudiante', '=', $user)->get();
+        foreach ($informaciones as $information) {
+            $fecha1 = new DateTime($information->horas_inicio); //fecha inicial
+            $fecha2 = new DateTime($information->horas_fin); //fecha de cierre
+            $intervalo = $fecha1->diff($fecha2);
+            $totalhoras =  $intervalo->format('%H'); //00 años 0 meses 0 días 08 horas 0 minutos 0 segundos
+            $total = $totalhoras + $total;
+        }
+
+
+        return view('informacion.index', compact('informaciones', 'user', 'total'));
     }
 
     /**
@@ -24,7 +38,7 @@ class InformationController extends Controller
      */
     public function create()
     {
-        //
+        return view('informacion.create');  
     }
 
     /**
@@ -35,7 +49,23 @@ class InformationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user()->id;
+        $request->validate([
+            'fecha'=> 'required',
+            'horas_inicio'=> 'required',
+            'horas_fin'=> 'required',
+            'descripcion'=> 'required',
+        ]);
+
+        Information::create([
+            'fecha' => $request->fecha,
+            'horas_inicio' => $request->horas_inicio,
+            'horas_fin' => $request->horas_fin,
+            'descripcion' => $request->descripcion,
+            'id_estudiante' => $user,
+        ]);
+        return redirect()->route('information.index')->with('info', 'La información se registro correctamente');
+   
     }
 
     /**
@@ -57,7 +87,7 @@ class InformationController extends Controller
      */
     public function edit(Information $information)
     {
-        //
+        return view('informacion.edit', compact('information'));
     }
 
     /**
@@ -69,7 +99,19 @@ class InformationController extends Controller
      */
     public function update(Request $request, Information $information)
     {
-        //
+        $request->validate([
+            'fecha'=> 'required',
+            'horas_inicio'=> 'required',
+            'horas_fin'=> 'required',
+            'descripcion'=> 'required',
+        ]);
+        $information->update([
+            'fecha' => $request->fecha,
+            'horas_inicio' => $request->horas_inicio,
+            'horas_fin' => $request->horas_fin,
+            'descripcion' => $request->descripcion,
+        ]);
+        return redirect()->route('information.edit', $information)->with('info', 'La información se actualizó sastifactoriamente');
     }
 
     /**
@@ -80,6 +122,8 @@ class InformationController extends Controller
      */
     public function destroy(Information $information)
     {
-        //
+        $information->delete();
+        return redirect()->route('information.index')->with('info', 'La información se elimino con éxito');
+   
     }
 }

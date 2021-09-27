@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\ConvenioController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\PostulationController;
 use App\Http\Controllers\RecursoController;
@@ -28,6 +29,7 @@ Route::get('detalle/{asignacion}',[AsignacionController::class,'detalle'])->name
 Route::get('aceptar_asignacion/{asignacion}',[AsignacionController::class,'aceptar_asignacion'])->name('asignacion.aceptar_asignacion');
 Route::post('rechazar_asignacion/{asignation}',[AsignacionController::class,'rechazar_asignacion'])->name('asignacion.rechazar_asignacion');
 Route::resource('activity',ActivityController::class )->names('activity');
+Route::resource('information',InformationController::class )->names('information');
 
 
 

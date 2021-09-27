@@ -91,8 +91,8 @@
 
             <!-- Preloader -->
             <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60"
-                    width="60">
+                <img class="animation__shake" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo"
+                    height="60" width="60">
             </div>
 
             <!-- Navbar -->
@@ -124,7 +124,7 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
+                                                                         document.getElementById('logout-form').submit();">
                                 {{ __('Cerrar Sesión') }}
                             </a>
 
@@ -162,25 +162,33 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
-    {{-- egresado --}}
-    @if (Auth::user()->tipo_usuario == 0)
-    <li class="nav-header">
-        <h5>Menú de opciones</h5>
-    </li>
-    <li class="nav-item">
-    <a href="{{route('tutor.recurso.descargar')}}" class="nav-link {{request()->routeIs('tutor.recurso.descargar') ? 'active' : ''}}">
-        <i class="nav-icon fas fa-file-word"></i>
-        <p>Recursos</p>
-    </a>
-</li>
-    <li class="nav-item">
-        <a href="{{ route('egresado.postulation.index') }}"
-            class="nav-link {{ request()->routeIs('egresado.postulation.index') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-briefcase"></i>
-            <p>Cupo ofertado</p>
-        </a>
-    </li>
-@endif
+                            {{-- egresado --}}
+                            @if (Auth::user()->tipo_usuario == 0)
+                                <li class="nav-header">
+                                    <h5>Menú de opciones</h5>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('tutor.recurso.descargar') }}"
+                                        class="nav-link {{ request()->routeIs('tutor.recurso.descargar') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-file-word"></i>
+                                        <p>Recursos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('egresado.postulation.index') }}"
+                                        class="nav-link {{ request()->routeIs('egresado.postulation.index') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-briefcase"></i>
+                                        <p>Cupo ofertado</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('information.index') }}"
+                                        class="nav-link {{ request()->routeIs('information.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-briefcase"></i>
+                                        <p>Actividad</p>
+                                    </a>
+                                </li>
+                            @endif
 
                             {{-- gestor --}}
                             @if (Auth::user()->tipo_usuario == 1)
@@ -188,11 +196,12 @@
                                     <h5>Menú de opciones</h5>
                                 </li>
                                 <li class="nav-item">
-                                <a href="{{route('tutor.recurso.index')}}" class="nav-link {{request()->routeIs('tutor.recurso.*') ? 'active' : ''}}">
-                                    <i class="nav-icon fas fa-file-word"></i>
-                                    <p>Recursos</p>
-                                </a>
-                            </li>
+                                    <a href="{{ route('tutor.recurso.index') }}"
+                                        class="nav-link {{ request()->routeIs('tutor.recurso.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-file-word"></i>
+                                        <p>Recursos</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="{{ route('tutor.convenio.index') }}"
                                         class="nav-link {{ request()->routeIs('tutor.convenio.*') ? 'active' : '' }}">
@@ -222,32 +231,32 @@
                                     </a>
                                 </li>
                             @endif
-                        {{-- convenio --}}
+                            {{-- convenio --}}
                             @if (Auth::user()->tipo_usuario == 2)
-                            <li class="nav-header">
-                                <h5>Menú de opciones</h5>
-                            </li>
-                           
+                                <li class="nav-header">
+                                    <h5>Menú de opciones</h5>
+                                </li>
+
                             @endif
-                        {{-- docente o tutor --}}
+                            {{-- docente o tutor --}}
                             @if (Auth::user()->tipo_usuario == 3)
-                            <li class="nav-header">
-                                <h5>Menú de opciones</h5>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('asignacion.asignaciontutor') }}"
-                                    class="nav-link {{ request()->routeIs('asignacion.*') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-book"></i>
-                                    <p>Asignación</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('activity.index') }}"
-                                    class="nav-link {{ request()->routeIs('activity.*') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-book"></i>
-                                    <p>Actividad</p>
-                                </a>
-                            </li>
+                                <li class="nav-header">
+                                    <h5>Menú de opciones</h5>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('asignacion.asignaciontutor') }}"
+                                        class="nav-link {{ request()->routeIs('asignacion.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-book"></i>
+                                        <p>Asignación</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('activity.index') }}"
+                                        class="nav-link {{ request()->routeIs('activity.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-book"></i>
+                                        <p>Actividad</p>
+                                    </a>
+                                </li>
                             @endif
                         </ul>
                     </nav>
