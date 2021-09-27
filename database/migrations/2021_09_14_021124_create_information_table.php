@@ -24,6 +24,8 @@ class CreateInformationTable extends Migration
             $table->time('horas_inicio');
             $table->time('horas_fin');
             $table->string('descripcion');
+            $table->integer('semana');
+            $table->string('dia');
             $table->unsignedBigInteger('id_estudiante');
             $table->foreign('id_estudiante')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

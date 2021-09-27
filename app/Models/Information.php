@@ -9,7 +9,7 @@ class Information extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'fecha','horas_inicio', 'horas_fin', 'descripcion','id_estudiante'
+        'fecha','horas_inicio', 'horas_fin', 'descripcion','id_estudiante','semana','dia'
     ];
     public function estudiantes(){
         return $this->belongsTo('App\Models\User','id_estudiante');

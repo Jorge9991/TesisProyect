@@ -54,7 +54,9 @@ class InformationController extends Controller
             'fecha'=> 'required',
             'horas_inicio'=> 'required',
             'horas_fin'=> 'required',
-            'descripcion'=> 'required',
+            'semana'=> 'required',
+            'dia'=> 'required',
+            'descripcion'=> 'required|max:180',
         ]);
 
         Information::create([
@@ -62,6 +64,8 @@ class InformationController extends Controller
             'horas_inicio' => $request->horas_inicio,
             'horas_fin' => $request->horas_fin,
             'descripcion' => $request->descripcion,
+            'semana' => $request->semana,
+            'dia' => $request->dia,
             'id_estudiante' => $user,
         ]);
         return redirect()->route('information.index')->with('info', 'La información se registro correctamente');
@@ -103,13 +107,17 @@ class InformationController extends Controller
             'fecha'=> 'required',
             'horas_inicio'=> 'required',
             'horas_fin'=> 'required',
-            'descripcion'=> 'required',
+            'semana'=> 'required',
+            'dia'=> 'required',
+            'descripcion'=> 'required|max:200',
         ]);
         $information->update([
             'fecha' => $request->fecha,
             'horas_inicio' => $request->horas_inicio,
             'horas_fin' => $request->horas_fin,
             'descripcion' => $request->descripcion,
+            'semana' => $request->semana,
+            'dia' => $request->dia,
         ]);
         return redirect()->route('information.edit', $information)->with('info', 'La información se actualizó sastifactoriamente');
     }

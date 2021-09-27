@@ -19,8 +19,17 @@
                 <a href="{{ route('information.create') }}" class="btn btn-primary float-right"><i
                         class="fa fa-plus-square"></i>&nbsp;Registrar Actividad</a>
             </h3>
+            &nbsp; <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">
+                        PDF
+                    </font>
+                </font>
+            </button>
+           
         </div>
         <div class="card-header">
+            
             <h3 class="card-title">
                 Total de horas completadas: {{ $total}}
             </h3>
@@ -76,29 +85,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                $dia = 0;
-                                $semana = 1;
-                                ?>
+                             
                                 @forelse($informaciones as $information)
-                                    <?php
-                                    $dia = $dia + 1;
-                                    if ($dia == 6 or $dia == 11 or $dia == 16 or $dia == 21 or $dia == 26 or $dia == 31 or $dia == 36 or $dia == 41 or $dia == 46 or $dia == 51 or $dia == 56 or $dia == 61 or $dia == 66 or $dia == 71 or $dia == 76 or $dia == 81 or $dia == 86 or $dia == 91 or $dia == 96 or $dia == 101) {
-                                        $semana = $semana + 1;
-                                    }
-                                    ?>
+                                
                                     <tr class="odd">
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             <font style="vertical-align: inherit;">
                                                 <font style="vertical-align: inherit;">
-                                                    {{ $dia }}
+                                                    {{ $information->dia }}
                                                 </font>
                                             </font>
                                         </td>
                                         <td>
                                             <font style="vertical-align: inherit;">
                                                 <font style="vertical-align: inherit;">
-                                                    {{ $semana }}
+                                                    {{ $information->semana }}
                                                 </font>
                                             </font>
                                         </td>
@@ -140,6 +141,47 @@
                     </div>
                 </div>
             </div>
+        </div>
+       
+        <div class="modal fade" id="modal-default" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Selecione la semana</font>
+                            </font>
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">×</font>
+                                </font>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="pdf.php" method="post" target="_blank">
+                            <input  name="user" id="user" value="{{ auth()->id() }}" type="hidden"/>
+                            <input  name="usuario" id="usuario" value="{{ auth()->user()->name }}" type="hidden"/>
+                            <div class="form-group col-md-12">
+                                {!! Form::label('semana', 'Semana:') !!}
+                                {!! Form::selectRange('semana', 1, 20, null, ['class' => 'custom-select' . ($errors->has('semana') ? ' is-invalid' : '')]) !!}
+                                @error('semana')
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <button type="submit" class="btn btn-warning" style="color: #ffffff;"><i class="fa fa-eye"></i>&nbsp;Visualizar reporte Pdf</button>
+                        </form>
+            
+                    </div>
+                   
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>
         <!-- /.card-body -->
     </div>
