@@ -37,8 +37,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
     {{-- estilos personalizados --}}
     <link rel="stylesheet" href="{{ asset('css/stylos.css') }}">
-
-
+{{-- icono --}}
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/png"/>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -47,7 +47,7 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Tesis Proyect') }}
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -89,10 +89,10 @@
     @else
         <div class="wrapper">
 
-            <!-- Preloader -->
+            <!-- cargando -->
             <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo"
-                    height="60" width="60">
+                <img class="animation__shake"src="{{ asset('img/logo.png') }}" alt="AdminLTELogo"
+                    height="60" width="160">
             </div>
 
             <!-- Navbar -->
@@ -149,10 +149,11 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- aqui va el logo -->
-                <a href="{{ route('home') }}" class="brand-link">
-                    <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-                        class="brand-image img-circle elevation-3" style="opacity: .8">
-                    <span class="brand-text font-weight-light">Proyect Tesis </span>
+                <a href="{{ route('home') }}" class="brand-link ">
+                    <div class="flex-column justify-content-center align-items-center">
+                        <img class="animation__shake"src="{{ asset('img/logo.png') }}" alt="AdminLTELogo"
+                            height="50" width="160">
+                    </div>
                 </a>
 
                 <!-- Sidebar -->
@@ -177,15 +178,22 @@
                                 <li class="nav-item">
                                     <a href="{{ route('egresado.postulation.index') }}"
                                         class="nav-link {{ request()->routeIs('egresado.postulation.index') ? 'active' : '' }}">
-                                        <i class="nav-icon fas fa-briefcase"></i>
+                                        <i class="nav-icon fas fa-list-alt"></i>
                                         <p>Cupo ofertado</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('information.index') }}"
                                         class="nav-link {{ request()->routeIs('information.*') ? 'active' : '' }}">
-                                        <i class="nav-icon fas fa-briefcase"></i>
+                                        <i class="nav-icon fas fa-folder"></i>
                                         <p>Actividad</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('informe.index') }}"
+                                        class="nav-link {{ request()->routeIs('informe.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-file-code"></i>
+                                        <p>Informe Final</p>
                                     </a>
                                 </li>
                             @endif
@@ -219,14 +227,14 @@
                                 <li class="nav-item">
                                     <a href="{{ route('egresado.postulation.postulaciones') }}"
                                         class="nav-link {{ request()->routeIs('egresado.postulation.*') ? 'active' : '' }}">
-                                        <i class="nav-icon fas fa-book"></i>
+                                        <i class="nav-icon fas fa-list"></i>
                                         <p>Postulaciones</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('asignacion.index') }}"
                                         class="nav-link {{ request()->routeIs('asignacion.*') ? 'active' : '' }}">
-                                        <i class="nav-icon fas fa-book"></i>
+                                        <i class="nav-icon fas fa-sitemap"></i>
                                         <p>Asignación</p>
                                     </a>
                                 </li>
@@ -246,15 +254,22 @@
                                 <li class="nav-item">
                                     <a href="{{ route('asignacion.asignaciontutor') }}"
                                         class="nav-link {{ request()->routeIs('asignacion.*') ? 'active' : '' }}">
-                                        <i class="nav-icon fas fa-book"></i>
+                                        <i class="nav-icon fas fa-sitemap"></i>
                                         <p>Asignación</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('activity.index') }}"
                                         class="nav-link {{ request()->routeIs('activity.*') ? 'active' : '' }}">
-                                        <i class="nav-icon fas fa-book"></i>
+                                        <i class="nav-icon fas fa-check-square"></i>
                                         <p>Actividad</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('informe.informe') }}"
+                                        class="nav-link {{ request()->routeIs('informe.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-list"></i>
+                                        <p>Informes</p>
                                     </a>
                                 </li>
                             @endif

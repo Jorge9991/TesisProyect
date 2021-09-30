@@ -13,16 +13,17 @@ class AceptarAsignacionMailable extends Mailable
 
     public $subject = "Aceptación del Tutor";
 
-    public $docente,$asignacion;
+    public $docente,$asignation,$archivo;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($docente,$asignacion)
+    public function __construct($docente,$asignation,$archivo)
     {
         $this->docente = $docente;
-        $this->asignacion = $asignacion;
+        $this->asignation = $asignation;
+        $this->archivo = $archivo;
     }
 
     /**
@@ -32,6 +33,8 @@ class AceptarAsignacionMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.aceptarasignacion');
+        return $this->view('emails.aceptarasignacion')->attach($this->archivo->getRealPath(),[
+            'as' => $this->archivo->getClientOriginalName()
+        ]);
     }
 }

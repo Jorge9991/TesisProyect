@@ -5,7 +5,7 @@
             <select name="dia" id="dia" class="custom-select">
                 @if (isset($information))
                 <option value="LUNES" @if( $information->dia == 'LUNES') selected='selected' @endif>LUNES</option>
-                <option value="MARTES" @if( $information->dia == 'PRIVADA') selected='selected' @endif>PRIVADA</option>
+                <option value="MARTES" @if( $information->dia == 'MARTES') selected='selected' @endif>MARTES</option>
                 <option value="MIERCOLES" @if( $information->dia == 'MIERCOLES') selected='selected' @endif>MIERCOLES</option>
                 <option value="JUEVES" @if( $information->dia == 'JUEVES') selected='selected' @endif>JUEVES</option>
                 <option value="VIERNES" @if( $information->dia == 'VIERNES') selected='selected' @endif>VIERNES</option>

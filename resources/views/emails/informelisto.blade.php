@@ -7,9 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Aceptación de la Asignación</h1>
-    <h2>Nombre del docente/Tutor: {{$docente}}</h2>
-    <h2>Nombre del convenio: {{ $asignation->entidad_receptora}}</h2>
+    <h1>Informe Listo</h1>
+    <h3>El estudiante {{$user->name }} ha subido los documentos para la revisión y aprobación</h3>
 
     <a href="http://localhost/TesisProyect/public/">Link del sistema</a>
 </body>

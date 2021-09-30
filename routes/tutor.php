@@ -4,6 +4,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\ConvenioController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\InformeFinalController;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\PostulationController;
 use App\Http\Controllers\RecursoController;
@@ -26,10 +27,20 @@ Route::get('asignacion/{postulacion}',[AsignacionController::class,'asignar'])->
 Route::post('asignar/{postulacion}',[AsignacionController::class,'asignar_tutor'])->name('asignacion.asignar_tutor');
 Route::get('asignaciones_tutor',[AsignacionController::class,'asignaciontutor'])->name('asignacion.asignaciontutor');
 Route::get('detalle/{asignacion}',[AsignacionController::class,'detalle'])->name('asignacion.detalle');
-Route::get('aceptar_asignacion/{asignacion}',[AsignacionController::class,'aceptar_asignacion'])->name('asignacion.aceptar_asignacion');
+Route::post('aceptar_asignacion/{asignation}',[AsignacionController::class,'aceptar_asignacion'])->name('asignacion.aceptar_asignacion');
 Route::post('rechazar_asignacion/{asignation}',[AsignacionController::class,'rechazar_asignacion'])->name('asignacion.rechazar_asignacion');
 Route::resource('activity',ActivityController::class )->names('activity');
 Route::resource('information',InformationController::class )->names('information');
+Route::get('informe',[InformeFinalController::class,'index'])->name('informe.index');
+Route::get('informefinal',[InformeFinalController::class,'informe'])->name('informe.informe');
+Route::post('informe_create',[InformeFinalController::class,'create'])->name('informe.create');
+Route::get('informe_final/{informefinal}',[InformeFinalController::class,'opcion'])->name('informe.opcion');
+Route::post('informe_final_aprobar/{informefinal}',[InformeFinalController::class,'aprobar'])->name('informe.aprobar');
+Route::post('informe_final_noaprobar/{informefinal}',[InformeFinalController::class,'noaprobar'])->name('informe.noaprobar');
+Route::get('informe_final_cancelar/{informefinal}',[InformeFinalController::class,'cancelar'])->name('informe.cancelar');
+
+
+
 
 
 

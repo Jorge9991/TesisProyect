@@ -91,21 +91,23 @@ class AsignacionController extends Controller
        
     }
 
-    public function aceptar_asignacion(Convenio $asignacion)
+    public function aceptar_asignacion(Convenio $asignation, Request $request)
     {
         $user = Auth::user()->id;
         $docente = Auth::user()->name;
         $correogestor = User::where('tipo_usuario','=','1')->first();
-        $asignaciones = Asignacion::where('id_convenio', '=', $asignacion->id)->where('id_docente', '=', $user)->get();
+        $asignaciones = Asignacion::where('id_convenio', '=', $asignation->id)->where('id_docente', '=', $user)->get();
         foreach($asignaciones as $asignacion){
             $asignacion->estado = '2'; // 2 = a aceptado la asignacion
             $asignacion->save();
         }
-        $correo = new AceptarAsignacionMailable($docente,$asignacion);
+        $archivo = $request->file('file');
+        $correo = new AceptarAsignacionMailable($docente,$asignation,$archivo);
         Mail::to($correogestor->email)->send($correo);
-      return redirect()->route('asignacion.asignaciontutor')->with('info', 'Usted ha aceptado la Asignación');
+        return redirect()->route('asignacion.asignaciontutor')->with('info', 'Usted ha aceptado la Asignación');
     
     }
+
     public function rechazar_asignacion(Convenio $asignation,Request $request)
     {
         

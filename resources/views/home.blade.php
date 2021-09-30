@@ -54,6 +54,23 @@
                     </div>
                 </div>
             @endif
+            @if (Auth::user()->tipo_usuario == 3)
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">{{ __('Pantalla principal') }}</div>
+
+                        <div class="card-body">
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+
+                            {{ __('Has logeado como Tutor') }}
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

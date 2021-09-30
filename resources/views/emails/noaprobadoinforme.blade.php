@@ -7,10 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Aceptación de la Asignación</h1>
-    <h2>Nombre del docente/Tutor: {{$docente}}</h2>
-    <h2>Nombre del convenio: {{ $asignation->entidad_receptora}}</h2>
-
+    <h1>Correción de documento</h1>
+    <h1>Estudiante {{$correoegresado->name}}.</h1>
+    <h3>Sus documentos no han sido aprobados, para mas información ingrese al sistema para revisar la observación</h3>
     <a href="http://localhost/TesisProyect/public/">Link del sistema</a>
+
+
 </body>
 </html>
