@@ -38,9 +38,8 @@ Route::get('informe_final/{informefinal}',[InformeFinalController::class,'opcion
 Route::post('informe_final_aprobar/{informefinal}',[InformeFinalController::class,'aprobar'])->name('informe.aprobar');
 Route::post('informe_final_noaprobar/{informefinal}',[InformeFinalController::class,'noaprobar'])->name('informe.noaprobar');
 Route::get('informe_final_cancelar/{informefinal}',[InformeFinalController::class,'cancelar'])->name('informe.cancelar');
-
-
-
-
+Route::get('revision',[InformeFinalController::class,'revision'])->name('informe.revision');
+Route::get('revision_detalle/{informefinal}',[InformeFinalController::class,'revision_detalle'])->name('informe.revision_detalle');
+Route::post('informeaprobado/{informefinal}',[InformeFinalController::class,'aprobado'])->name('informe.aprobado');
 
 

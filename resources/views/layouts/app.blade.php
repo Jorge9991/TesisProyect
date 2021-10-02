@@ -238,6 +238,13 @@
                                         <p>Asignación</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('informe.revision') }}"
+                                        class="nav-link {{ request()->routeIs('informe.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-folder"></i>
+                                        <p>Informes Finales</p>
+                                    </a>
+                                </li>
                             @endif
                             {{-- convenio --}}
                             @if (Auth::user()->tipo_usuario == 2)

@@ -14,6 +14,17 @@
                 </font>
             </h3>
         </div>
+        @if ($informefinal->estado == 5)
+        <div class="card-header">
+            <form action="certificado.php" method="post" target="_blank">
+                <input  name="user" id="user" value="{{ auth()->id() }}" type="hidden"/>
+                <input  name="nombre" id="nombre" value="{{ auth()->user()->name }}" type="hidden"/>
+                <input  name="codigo" id="codigo" value="{{ $codigo->codigo }}" type="hidden"/>
+                <button type="submit" class="btn btn-warning" style="color: #ffffff;"><i class="fa fa-eye"></i>&nbsp;Descargar certificado</button>
+            </form>
+        </div>  
+        @endif
+      
         <!-- /.card-header -->
         <div class="card-body">
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InformeFinal;
+use App\Models\Postulation;
 use App\Models\Recurso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class RecursoController extends Controller
@@ -102,7 +105,10 @@ class RecursoController extends Controller
 
     public function descargar()
     {
+        $user = Auth::user()->id;
+        $codigo = Postulation::where('id_estudiante', '=', $user)->first();
         $recursos = Recurso::where('proceso', '=', '1')->get();
-        return view('recursos.recursoe', compact('recursos'));
+        $informefinal = InformeFinal::where('id_estudiante', '=', $user)->first();
+        return view('recursos.recursoe', compact('recursos','codigo','informefinal'));
     }
 }

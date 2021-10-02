@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Mail\AprobadoInformeMailable;
+use App\Mail\AprobadoMailable;
 use App\Mail\DesaprobadoInformeMailable;
 use App\Mail\InformeMailable;
 use App\Mail\NotificacionMailable;
 use App\Models\Asignacion;
 use App\Models\InformeFinal;
+use App\Models\Postulation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -99,7 +101,7 @@ class InformeFinalController extends Controller
             InformeFinal::create([
                 'link' => $request->link,
                 'id_estudiante' => $user->id,
-                'estado' => '1', //1 estado de revision --2 estado de aprobacion --3 estado de correcion --4 estado de correcion enviada
+                'estado' => '1', //1 estado de revision --2 estado de aprobacion --3 estado de correcion --4 estado de correcion enviada --5 aprobado por gestor
                 'id_tutor' => $asignaciones->id_docente
             ]);
             $correo = new InformeMailable($user);
@@ -121,38 +123,30 @@ class InformeFinalController extends Controller
         }
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\InformeFinal  $informeFinal
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(InformeFinal $informeFinal)
+    public function revision()
     {
-        //
+        $informefinales = InformeFinal::where('estado', '=', '2')->orwhere('estado', '=', '5')->get();
+        return view('informe.revision', compact('informefinales'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\InformeFinal  $informeFinal
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, InformeFinal $informeFinal)
+    public function revision_detalle(InformeFinal $informefinal)
     {
-        //
+        return view('informe.detalle', compact('informefinal'));
+    }
+    public function aprobado(InformeFinal $informefinal,Request $request)
+    {
+        $correoegresado = User::where('id', '=', $informefinal->id_estudiante)->first();
+        $request->validate([
+            'fecha' => 'required',
+            'hora' => 'required',
+            'lugar' => 'required',
+            'observacion' => 'required',
+        ]);
+        $correo = new AprobadoMailable($request->all(),$informefinal);
+        Mail::to($correoegresado->email)->send($correo);
+        $informefinal->update([
+            'estado' => '5', // aprobado por el gestor
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\InformeFinal  $informeFinal
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(InformeFinal $informeFinal)
-    {
-        //
-    }
 }
