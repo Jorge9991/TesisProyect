@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\EnvioMailable;
 use App\Mail\InformeTitulacionMailable;
+use App\Models\Convenio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -44,5 +45,11 @@ class EnvioController extends Controller
     public function titulacion()
     {
         return view('informetitulacion.envio');
+    }
+
+    public function reporte()
+    {
+        $convenios = Convenio::all();
+        return view('reporte.reporte', compact('convenios'));
     }
 }

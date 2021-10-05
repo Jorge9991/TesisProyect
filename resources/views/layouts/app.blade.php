@@ -212,6 +212,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('reporte') }}"
+                                        class="nav-link {{ request()->routeIs('reporte') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-file-pdf"></i>
+                                        <p>Reportes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('tutor.recurso.index') }}"
                                         class="nav-link {{ request()->routeIs('tutor.recurso.*') ? 'active' : '' }}">
                                         <i class="nav-icon fas fa-file-word"></i>
@@ -267,6 +274,7 @@
                                         <p>Informe Titulación</p>
                                     </a>
                                 </li>
+
                             @endif
                             {{-- convenio --}}
                             @if (Auth::user()->tipo_usuario == 2)

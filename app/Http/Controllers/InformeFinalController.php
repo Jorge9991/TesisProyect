@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\AprobadoInformeMailable;
 use App\Mail\AprobadoMailable;
 use App\Mail\DesaprobadoInformeMailable;
+use App\Mail\InformeActualizadoMailable;
 use App\Mail\InformeMailable;
 use App\Mail\NotificacionMailable;
 use App\Models\Asignacion;
@@ -119,6 +120,8 @@ class InformeFinalController extends Controller
                 'link' => $request->link,
                 'estado' => '4', // estado de correcion enviada
             ]);
+            $correo = new InformeActualizadoMailable($user);
+            Mail::to($correodocente->email)->send($correo);
             return redirect()->route('informe.index')->with('info', 'Correción enviada');
         }
     }

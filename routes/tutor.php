@@ -52,4 +52,4 @@ Route::get('tutor_detalle/{user}',[EnvioController::class,'envio'])->name('tutor
 Route::post('envio_correo/{user}',[EnvioController::class,'enviocorreo'])->name('tutor_envio.enviocorreo');
 Route::get('titulacion',[EnvioController::class,'titulacion'])->name('titulacion.titulacion');
 Route::post('titulacion_correo',[EnvioController::class,'enviocorreotitulacion'])->name('titulacion.enviocorreotitulacion');
-
+Route::get('reporte',[EnvioController::class,'reporte'])->name('reporte');
