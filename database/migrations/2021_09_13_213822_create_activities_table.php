@@ -20,8 +20,8 @@ class CreateActivitiesTable extends Migration
             $table->string('recurso')->nullable();
             $table->string('descripcion_visita');
             $table->integer('estado');
-            $table->unsignedBigInteger('id_asignacion');
-            $table->foreign('id_asignacion')->references('id')->on('asignacions')->onDelete('cascade')->onUpdate('cascade');         
+            $table->unsignedBigInteger('id_convenio');
+            $table->foreign('id_convenio')->references('id')->on('convenios')->onDelete('cascade')->onUpdate('cascade');         
             $table->unsignedBigInteger('id_tutor');
             $table->foreign('id_tutor')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');         
             $table->timestamps();

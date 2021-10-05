@@ -1,10 +1,10 @@
 <div class="row">
     <div class="form-group col-md-6">
-        {!! Form::label('id_asignacion', 'Nombre del Convenio:') !!}
-        <select name="id_asignacion" id="id_asignacion" class="custom-select" @if (!empty($activity)) disabled @endif>
+        {!! Form::label('id_convenio', 'Nombre del Convenio:') !!}
+        <select name="id_convenio" id="id_convenio" class="custom-select" @if (!empty($activity)) disabled @endif>
             @if (!empty($activity))
                 @foreach ($asignaciones as $asignacion)
-                    <option value="{{ $asignacion->id_convenio }}" @if ($asignacion->id_convenio == $activity->id_asignacion) selected='selected' @endif>{{ $asignacion->convenios->entidad_receptora }}
+                    <option value="{{ $asignacion->id_convenio }}" @if ($asignacion->id_convenio == $activity->id_convenio) selected='selected' @endif>{{ $asignacion->convenios->entidad_receptora }}
                     </option>
                 @endforeach
             @else

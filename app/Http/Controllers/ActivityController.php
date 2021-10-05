@@ -46,19 +46,19 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         
-        $estudiantes = Asignacion::where('id_convenio', '=', $request->id_asignacion)->get();
+        $estudiantes = Asignacion::where('id_convenio', '=', $request->id_convenio)->get();
         $user = Auth::user();
         $request->validate([
             'descripcion'=> 'required',
             'fecha'=> 'required',
             'descripcion_visita'=> 'required',
-            'id_asignacion'=> 'required',
+            'id_convenio'=> 'required',
         ]);
         Activity::create([
             'descripcion' => $request->descripcion,
             'fecha' => $request->fecha,
             'descripcion_visita' => $request->descripcion_visita, 
-            'id_asignacion' => $request->id_asignacion,
+            'id_convenio' => $request->id_convenio,
             'id_tutor' => $user->id,
             'estado' => '1'
         ]);
@@ -107,7 +107,7 @@ class ActivityController extends Controller
     public function update(Request $request, Activity $activity)
     {
         $user = Auth::user();
-        $estudiantes = Asignacion::where('id_convenio', '=', $request->id_asignacion)->get();
+        $estudiantes = Asignacion::where('id_convenio', '=', $request->id_convenio)->get();
         $request->validate([
             'recurso'=> 'required',
             'fecha'=> 'required',

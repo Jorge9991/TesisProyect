@@ -12,7 +12,7 @@ class Activity extends Model
         'descripcion','fecha', 'recurso', 'id_convenio','descripcion_visita','estado','id_asignacion','id_tutor'
     ];
     public function asignaciones(){
-        return $this->belongsTo('App\Models\Convenio','id_asignacion');
+        return $this->belongsTo('App\Models\Convenio','id_convenio');
     }
     public function tutores(){
         return $this->belongsTo('App\Models\User','id_tutor');
