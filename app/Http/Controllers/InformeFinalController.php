@@ -147,6 +147,7 @@ class InformeFinalController extends Controller
         $informefinal->update([
             'estado' => '5', // aprobado por el gestor
         ]);
+        return view('informe.detalle', compact('informefinal'));
     }
 
 }

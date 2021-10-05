@@ -16,15 +16,15 @@
             </h3>
         </div>
         <div class="card-header">
-            {{-- <a href="{{ route('asignacion.aceptar_asignacion', $asignacion) }}" class="btn btn-success">Aceptar</a> --}}
-
+            <a href="{{ route('asignacion.aceptar_asignacion', $asignacion) }}" class="btn btn-success">Aceptar</a>
+           {{-- 
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-defaul">
                 <font style="vertical-align: inherit;">
                     <font style="vertical-align: inherit;">
                         Aceptar
                     </font>
                 </font>
-            </button>
+            </button> --}}
 
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">
                 <font style="vertical-align: inherit;">

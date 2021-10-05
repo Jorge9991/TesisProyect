@@ -3,11 +3,14 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\ConvenioController;
+use App\Http\Controllers\EnvioController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\InformeFinalController;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\PostulationController;
+use App\Http\Controllers\ProcesoController;
 use App\Http\Controllers\RecursoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('convenio',ConvenioController::class )->names('tutor.convenio');
@@ -27,7 +30,7 @@ Route::get('asignacion/{postulacion}',[AsignacionController::class,'asignar'])->
 Route::post('asignar/{postulacion}',[AsignacionController::class,'asignar_tutor'])->name('asignacion.asignar_tutor');
 Route::get('asignaciones_tutor',[AsignacionController::class,'asignaciontutor'])->name('asignacion.asignaciontutor');
 Route::get('detalle/{asignacion}',[AsignacionController::class,'detalle'])->name('asignacion.detalle');
-Route::post('aceptar_asignacion/{asignation}',[AsignacionController::class,'aceptar_asignacion'])->name('asignacion.aceptar_asignacion');
+Route::get('aceptar_asignacion/{asignation}',[AsignacionController::class,'aceptar_asignacion'])->name('asignacion.aceptar_asignacion');
 Route::post('rechazar_asignacion/{asignation}',[AsignacionController::class,'rechazar_asignacion'])->name('asignacion.rechazar_asignacion');
 Route::resource('activity',ActivityController::class )->names('activity');
 Route::resource('information',InformationController::class )->names('information');
@@ -41,5 +44,12 @@ Route::get('informe_final_cancelar/{informefinal}',[InformeFinalController::clas
 Route::get('revision',[InformeFinalController::class,'revision'])->name('informe.revision');
 Route::get('revision_detalle/{informefinal}',[InformeFinalController::class,'revision_detalle'])->name('informe.revision_detalle');
 Route::post('informeaprobado/{informefinal}',[InformeFinalController::class,'aprobado'])->name('informe.aprobado');
-
+Route::resource('user',UserController::class )->names('user');
+Route::get('estudiantes',[ProcesoController::class,'index'])->name('estudiantes.index');
+Route::get('proceso_estudiante/{user}',[ProcesoController::class,'proceso_estudiante'])->name('estudiantes.proceso_estudiante');
+Route::get('tutor',[EnvioController::class,'index'])->name('tutor_envio.index');
+Route::get('tutor_detalle/{user}',[EnvioController::class,'envio'])->name('tutor_envio.envio');
+Route::post('envio_correo/{user}',[EnvioController::class,'enviocorreo'])->name('tutor_envio.enviocorreo');
+Route::get('titulacion',[EnvioController::class,'titulacion'])->name('titulacion.titulacion');
+Route::post('titulacion_correo',[EnvioController::class,'enviocorreotitulacion'])->name('titulacion.enviocorreotitulacion');
 

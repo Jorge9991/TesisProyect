@@ -14,7 +14,9 @@
                 </font>
             </h3>
         </div>
+        @if ($informefinal)
         @if ($informefinal->estado == 5)
+
         <div class="card-header">
             <form action="certificado.php" method="post" target="_blank">
                 <input  name="user" id="user" value="{{ auth()->id() }}" type="hidden"/>
@@ -24,7 +26,7 @@
             </form>
         </div>  
         @endif
-      
+        @endif
         <!-- /.card-header -->
         <div class="card-body">
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">

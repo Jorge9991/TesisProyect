@@ -4,6 +4,7 @@ $id = $_POST['user'];
 $nombre = $_POST['nombre'];
 $codigo = $_POST['codigo'];
 
+
 require 'phpqrcode/qrlib.php';
 
 $dir = 'temp/';
@@ -14,7 +15,7 @@ $filename = $dir.$id.$codigo.'krieger.png';
 $tamano = 100;
 $level = 'Q';
 $frameSize = 3;
-$contenido = 'http://localhost/TesisProyect/public/';
+$contenido = 'http://localhost/TesisProyect/public/proceso_estudiante/'.$id;
 
 QRcode::png($contenido,$filename,$level,$frameSize);
 

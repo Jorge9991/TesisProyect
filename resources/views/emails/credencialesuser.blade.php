@@ -7,12 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Nuevo estudiante para aprobación </h1>
-    <h1>Estudiante: {{$correoegresado->name}}.</h1>
-    <h3>El tutor {{ $informefinal->tutores->name}} há aprobado la documentación para su revisión</h3>
-    <h3>La fecha de la firma por parte del tutor es: {{ $informefinal->fecha}} </h3>
+    <h1>Credenciales</h1>
+    <h2>Usuario: {{$credenciales['email']}} </h2>
+    <h2>Contraseña: {{$credenciales['password']}}</h2>
     <a href="http://localhost/TesisProyect/public/">Link del sistema</a>
-
-
 </body>
 </html>

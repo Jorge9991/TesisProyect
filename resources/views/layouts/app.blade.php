@@ -37,14 +37,14 @@
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
     {{-- estilos personalizados --}}
     <link rel="stylesheet" href="{{ asset('css/stylos.css') }}">
-{{-- icono --}}
-    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/png"/>
+    {{-- icono --}}
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/png" />
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     @guest
         <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Tesis Proyect') }}
@@ -80,7 +80,7 @@
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </nav> --}}
 
             <main>
                 @yield('content')
@@ -91,8 +91,8 @@
 
             <!-- cargando -->
             <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake"src="{{ asset('img/logo.png') }}" alt="AdminLTELogo"
-                    height="60" width="160">
+                <img class="animation__shake" src="{{ asset('img/logo.png') }}" alt="AdminLTELogo" height="60"
+                    width="160">
             </div>
 
             <!-- Navbar -->
@@ -123,8 +123,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                         document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                                             document.getElementById('logout-form').submit();">
                                 {{ __('Cerrar Sesión') }}
                             </a>
 
@@ -151,8 +152,8 @@
                 <!-- aqui va el logo -->
                 <a href="{{ route('home') }}" class="brand-link ">
                     <div class="flex-column justify-content-center align-items-center">
-                        <img class="animation__shake"src="{{ asset('img/logo.png') }}" alt="AdminLTELogo"
-                            height="50" width="160">
+                        <img class="animation__shake" src="{{ asset('img/logo.png') }}" alt="AdminLTELogo" height="50"
+                            width="160">
                     </div>
                 </a>
 
@@ -204,6 +205,13 @@
                                     <h5>Menú de opciones</h5>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('user.index') }}"
+                                        class="nav-link {{ request()->routeIs('user.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-users"></i>
+                                        <p>Usuarios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('tutor.recurso.index') }}"
                                         class="nav-link {{ request()->routeIs('tutor.recurso.*') ? 'active' : '' }}">
                                         <i class="nav-icon fas fa-file-word"></i>
@@ -245,13 +253,33 @@
                                         <p>Informes Finales</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('tutor_envio.index') }}"
+                                        class="nav-link {{ request()->routeIs('tutor_envio.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p>Asignación a tutor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('titulacion.titulacion') }}"
+                                        class="nav-link {{ request()->routeIs('titulacion.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-book"></i>
+                                        <p>Informe Titulación</p>
+                                    </a>
+                                </li>
                             @endif
                             {{-- convenio --}}
                             @if (Auth::user()->tipo_usuario == 2)
                                 <li class="nav-header">
                                     <h5>Menú de opciones</h5>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="{{ route('tutor.oferta_cupo.index') }}"
+                                        class="nav-link {{ request()->routeIs('tutor.oferta_cupo.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-briefcase"></i>
+                                        <p>Ofertas</p>
+                                    </a>
+                                </li>
                             @endif
                             {{-- docente o tutor --}}
                             @if (Auth::user()->tipo_usuario == 3)
@@ -280,14 +308,38 @@
                                     </a>
                                 </li>
                             @endif
+                            {{-- vicerrectorado --}}
+                            @if (Auth::user()->tipo_usuario == 4)
+                                <li class="nav-header">
+                                    <h5>Menú de opciones</h5>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('estudiantes.index') }}"
+                                        class="nav-link {{ request()->routeIs('estudiantes.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-users"></i>
+                                        <p>Estudiantes</p>
+                                    </a>
+                                </li>
+                            @endif
+                            {{-- titulación --}}
+                            @if (Auth::user()->tipo_usuario == 5)
+                                <li class="nav-header">
+                                    <h5>Menú de opciones</h5>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('estudiantes.index') }}"
+                                        class="nav-link {{ request()->routeIs('estudiantes.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-users"></i>
+                                        <p>Estudiantes</p>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
                 </div>
                 <!-- /.sidebar -->
-
             </aside>
-
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
