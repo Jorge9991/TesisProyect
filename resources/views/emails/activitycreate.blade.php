@@ -11,6 +11,7 @@
     <h2>Nombre del docente/Tutor: {{$user->name}}</h2>
     <h2>Nombre de la actividad: {{ $actividad['descripcion']}}</h2>
     <h2>Fecha de la visita: {{ $actividad['fecha']}}</h2>
+    <h2>Observación: {{ $actividad['descripcion_visita']}}</h2>
     <a href="http://localhost/TesisProyect/public/">Link del sistema</a>
 </body>
 </html>

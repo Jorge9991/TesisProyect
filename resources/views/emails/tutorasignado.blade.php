@@ -7,11 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Datos de la actividad</h1>
-    <h2>Nombre del docente/Tutor: {{$user->name}}</h2>
-    <h2>Nombre de la actividad: {{ $actividad->descripcion}}</h2>
-    <h2>Fecha de la visita: {{ $actividad->fecha}}</h2>
-    <h2>Observación: {{ $actividad->descripcion_visita}}</h2>
+    <h1>Asignación de tutor</h1>
+    <h2>Se le há asignado un tutor para las practicas</h2>
+    <h2>Nombre del docente/Tutor: {{$docente}}</h2>
+
     <a href="http://localhost/TesisProyect/public/">Link del sistema</a>
 </body>
 </html>

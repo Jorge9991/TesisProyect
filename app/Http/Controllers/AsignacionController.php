@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\AceptarAsignacionMailable;
 use App\Mail\AsignacionMailable;
 use App\Mail\RechazarAsignacionMailable;
+use App\Mail\TutorMailable;
 use App\Models\Asignacion;
 use App\Models\Convenio;
 use App\Models\Postulation;
@@ -104,6 +105,14 @@ class AsignacionController extends Controller
         // $archivo = $request->file('file');
         $correo = new AceptarAsignacionMailable($docente,$asignation);
         Mail::to($correogestor->email)->send($correo);
+
+        foreach($asignaciones as $asignacion){
+            $email = $asignacion->estudiantes->email;
+            $correo = new TutorMailable($docente);
+            Mail::to($email)->send($correo); 
+        }
+
+
         return redirect()->route('asignacion.asignaciontutor')->with('info', 'Usted ha aceptado la Asignación');
     
     }

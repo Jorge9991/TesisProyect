@@ -38,7 +38,7 @@
     </div>
     @endif
     <div class="form-group col-md-6">
-        <label for="select" class=" form-control-label">Tipología de la empresa:</label>
+        <label for="select" class=" form-control-label">Tipo de usuarios:</label>
             <select name="tipo_usuario" id="tipo_usuario" class="custom-select">
                 @if (isset($user))
                 <option value="0" @if( $user->tipo_usuario == '0') selected='selected' @endif>Egresado</option>

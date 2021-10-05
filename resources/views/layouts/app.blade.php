@@ -197,6 +197,13 @@
                                         <p>Informe Final</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('informedigital.index') }}"
+                                        class="nav-link {{ request()->routeIs('informedigital.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-desktop"></i>
+                                        <p>Informe Digitalizado</p>
+                                    </a>
+                                </li>
                             @endif
 
                             {{-- gestor --}}
@@ -274,7 +281,13 @@
                                         <p>Informe Titulación</p>
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="{{ route('informedigital.indexgestor') }}"
+                                        class="nav-link {{ request()->routeIs('informedigital.*') ? 'active' : '' }}">
+                                        <i class="nav-icon fas fa-desktop"></i>
+                                        <p>Informe Digitalizado</p>
+                                    </a>
+                                </li>
                             @endif
                             {{-- convenio --}}
                             @if (Auth::user()->tipo_usuario == 2)

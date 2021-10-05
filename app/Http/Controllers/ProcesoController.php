@@ -33,7 +33,7 @@ class ProcesoController extends Controller
         $link = InformeFinal::where('id_estudiante','=',$user->id)->first();
         $tutor = Asignacion::where('id_estudiante','=',$user->id)->first();
         if(is_object($tutor)) {
-            $visitas = Activity::where('id_asignacion','=',$tutor->id_convenio)->get();
+            $visitas = Activity::where('id_convenio','=',$tutor->id_convenio)->get();
             return view('proceso.proceso', compact('user','tutor','visitas','total','link'));
         }else{
             $visitas = false;

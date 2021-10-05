@@ -5,6 +5,7 @@ use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\ConvenioController;
 use App\Http\Controllers\EnvioController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\InformeDigitalController;
 use App\Http\Controllers\InformeFinalController;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\PostulationController;
@@ -53,3 +54,6 @@ Route::post('envio_correo/{user}',[EnvioController::class,'enviocorreo'])->name(
 Route::get('titulacion',[EnvioController::class,'titulacion'])->name('titulacion.titulacion');
 Route::post('titulacion_correo',[EnvioController::class,'enviocorreotitulacion'])->name('titulacion.enviocorreotitulacion');
 Route::get('reporte',[EnvioController::class,'reporte'])->name('reporte');
+Route::get('informedigital',[InformeDigitalController::class,'index'])->name('informedigital.index');
+Route::get('informe_digital',[InformeDigitalController::class,'indexgestor'])->name('informedigital.indexgestor');
+Route::post('informe_digitales',[InformeDigitalController::class,'create'])->name('informedigital.create');

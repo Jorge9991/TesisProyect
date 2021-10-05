@@ -26,6 +26,9 @@ class User extends Authenticatable
     public function informe(){
         return $this->hasMany('App\Models\InformeFinal');
     }
+    public function informedigital(){
+        return $this->hasMany('App\Models\InformeDigital');
+    }
 
 
     /**

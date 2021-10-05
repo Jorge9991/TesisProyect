@@ -7,11 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Datos de la actividad</h1>
-    <h2>Nombre del docente/Tutor: {{$user->name}}</h2>
-    <h2>Nombre de la actividad: {{ $actividad->descripcion}}</h2>
-    <h2>Fecha de la visita: {{ $actividad->fecha}}</h2>
-    <h2>Observación: {{ $actividad->descripcion_visita}}</h2>
+    <h1>Informe Listo</h1>
+    <h3>El estudiante {{$usuario->name }} a registrado sus documentos digitalizados, revise el sistema</h3>
+
     <a href="http://localhost/TesisProyect/public/">Link del sistema</a>
 </body>
 </html>
